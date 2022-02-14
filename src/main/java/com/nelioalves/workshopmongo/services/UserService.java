@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.nelioalves.workshopmongo.services.exceptions.ObjectNotFoundException;
+import dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,5 +24,13 @@ public class UserService {
 	public User findById(String id) throws ObjectNotFoundException {
 		Optional<User> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Usuário não encontrado"));
+	}
+
+	public User insert(User obj){
+		return repo.save(obj);
+	}
+
+	public User fromDto(UserDTO objDTO){
+		return new User(objDTO.getId(), objDTO.getName(), objDTO.getEmail());
 	}
 }
