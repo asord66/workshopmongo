@@ -1,7 +1,9 @@
 package com.nelioalves.workshopmongo.services;
 
 import java.util.List;
+import java.util.Optional;
 
+import com.nelioalves.workshopmongo.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,5 +18,10 @@ public class UserService {
 	
 	public List<User> findAll() {
 		return repo.findAll();
+	}
+
+	public User findById(String id) throws ObjectNotFoundException {
+		Optional<User> obj = repo.findById(id);
+		return obj.orElseThrow(() -> new ObjectNotFoundException("Usuário não encontrado"));
 	}
 }
