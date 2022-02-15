@@ -52,4 +52,11 @@ public class UserController {
 		service.delete(id);
 		return ResponseEntity.noContent().build();
 	}
+
+	@RequestMapping(method=RequestMethod.PUT)
+	public ResponseEntity<Void> update(@RequestBody User obj) {
+		System.out.println(obj.getId());
+		service.update(obj);
+		return ResponseEntity.noContent().build();
+	}
 }

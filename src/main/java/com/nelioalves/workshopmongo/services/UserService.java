@@ -1,5 +1,6 @@
 package com.nelioalves.workshopmongo.services;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,5 +38,14 @@ public class UserService {
 	public void delete(String id){
 		Optional<User> obj = repo.findById(id);
 		repo.delete(obj.orElseThrow(() -> new ObjectNotFoundException("Não encontrado")));
+	}
+
+	//ARRUMAR AMANHÃ
+	public void update(User obj){
+		Optional<User> temp = repo.findById(obj.getId());
+		temp.get().setName(obj.getName());
+		temp.get().setEmail(obj.getEmail());
+		repo.delete(temp.get());
+		repo.save(temp.get());
 	}
 }
