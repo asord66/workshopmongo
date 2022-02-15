@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+import com.nelioalves.workshopmongo.domain.Post;
 import com.nelioalves.workshopmongo.services.exceptions.ObjectNotFoundException;
 import dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
