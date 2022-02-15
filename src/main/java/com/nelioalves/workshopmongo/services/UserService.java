@@ -40,12 +40,14 @@ public class UserService {
 		repo.delete(obj.orElseThrow(() -> new ObjectNotFoundException("Não encontrado")));
 	}
 
-	//ARRUMAR AMANHÃ
-	public void update(User obj){
-		Optional<User> temp = repo.findById(obj.getId());
-		temp.get().setName(obj.getName());
-		temp.get().setEmail(obj.getEmail());
-		repo.delete(temp.get());
-		repo.save(temp.get());
+	public User update(User obj) {
+		User newObj = findById(obj.getId());
+		updateData(newObj, obj);
+		return repo.save(newObj);
+	}
+
+	private void updateData(User newObj, User obj) {
+		newObj.setName(obj.getName());
+		newObj.setEmail(obj.getEmail());
 	}
 }
